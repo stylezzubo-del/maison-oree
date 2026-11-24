@@ -1,0 +1,114 @@
+{
+  "announcement": "₩50,000 이상 구매 시 무료 배송   ·   모든 주문에 시그니처 선물 포장 제공",
+  "hero": {
+    "eyebrow": "AUTUMN — WINTER 2026 COLLECTION",
+    "title": "머무는 자리마다,\n고요한 온기를",
+    "description": "천연 소이 왁스와 조향사가 블렌딩한 프렌치 오일로\n하루의 끝을 천천히 밝히는 새 시즌의 향을 만나보세요.",
+    "image": "images/hero.webp",
+    "imageAlt": "저녁 햇살이 드는 트래버틴 테이블 위 앰버 캔들과 리드 디퓨저",
+    "primaryLabel": "컬렉션 보기",
+    "primaryLink": "#best",
+    "secondaryLabel": "클래스 일정 보기",
+    "secondaryLink": "#programs"
+  },
+  "philosophy": {
+    "text": "향은 기억이 머무는 가장 조용한 방식입니다.\n우리는 매일의 공간이 조금 더 느리고 깊어지도록,\n작은 불빛과 은은한 잔향을 만듭니다.",
+    "linkLabel": "브랜드 스토리 보기"
+  },
+  "categories": [
+    {
+      "en": "Candles",
+      "kr": "캔들",
+      "count": "24 items",
+      "image": "images/cat-candles.webp",
+      "imageAlt": "황동 뚜껑의 앰버 글라스 캔들 세 개",
+      "filter": "candle"
+    },
+    {
+      "en": "Diffusers",
+      "kr": "디퓨저",
+      "count": "16 items",
+      "image": "images/cat-diffusers.webp",
+      "imageAlt": "트래버틴 위 리브드 글라스 리드 디퓨저",
+      "filter": "diffuser"
+    },
+    {
+      "en": "Gift Sets",
+      "kr": "기프트 세트",
+      "count": "8 items",
+      "image": "images/gift-set.webp",
+      "imageAlt": "앰버 캔들과 디퓨저, 메시지 카드가 놓인 리본 선물 상자",
+      "filter": "gift"
+    }
+  ],
+  "craft": {
+    "title": "서울의 작은 아틀리에에서\n한 병씩, 손으로",
+    "text": "모든 캔들은 천연 소이 왁스와 면 심지로 한 번에 소량씩 부어 만들고, 충분한 숙성 기간을 거쳐 향이 온전히 자리 잡은 뒤에야 당신에게 보내집니다. 빠르게 만들지 않는 것, 그것이 우리가 향을 대하는 방식입니다.",
+    "image": "images/atelier.webp",
+    "imageAlt": "아틀리에에서 녹인 소이 왁스를 앰버 글라스 용기에 붓는 모습",
+    "stats": [
+      {
+        "value": "100%",
+        "label": "천연 소이 왁스"
+      },
+      {
+        "value": "60h",
+        "label": "평균 연소 시간"
+      },
+      {
+        "value": "3 weeks",
+        "label": "큐어링 숙성"
+      }
+    ]
+  },
+  "gift": {
+    "title": "마음을 전하는\n가장 우아한 방법",
+    "text": "캔들과 디퓨저, 핸드 크림으로 구성된 시즌 기프트 세트.\n각인 메시지와 시그니처 리본 포장으로 특별함을 더하세요.",
+    "image": "images/gift-set.webp",
+    "imageAlt": "리본과 티슈로 꾸민 캔들·디퓨저 선물 세트",
+    "buttonLabel": "기프트 세트 보기",
+    "buttonLink": "#best"
+  },
+  "services": [
+    {
+      "en": "Complimentary Wrapping",
+      "kr": "모든 주문 무료 선물 포장"
+    },
+    {
+      "en": "Free Shipping",
+      "kr": "₩50,000 이상 무료 배송"
+    },
+    {
+      "en": "Personal Engraving",
+      "kr": "메시지 각인 서비스"
+    },
+    {
+      "en": "Easy Returns",
+      "kr": "수령 후 14일 이내 교환·반품"
+    }
+  ],
+  "contact": {
+    "address": "",
+    "email": "",
+    "phone": "",
+    "kakaoLink": "",
+    "instagramLink": "",
+    "businessInfo": "사업자 정보 영역",
+    "imageNote": "이미지는 제품과 공간을 연출한 시안입니다."
+  },
+  "inquiry": {
+    "endpoint": "",
+    "responseTime": "영업일 기준 1일 안에",
+    "types": [
+      "기업 선물",
+      "대량 주문",
+      "문구 각인 제작",
+      "출장·기업 클래스",
+      "기타"
+    ],
+    "privacyPurpose": "상담 문의 확인, 견적 안내와 답변",
+    "privacyItems": "(필수) 기업명, 담당자명, 연락처, 상담 내용 / (선택) 이메일, 예상 수량, 희망 납기일",
+    "privacyRetention": "상담 종료 후 1년 보관 후 파기",
+    "consentVersion": "2026-11-24"
+  }
+}

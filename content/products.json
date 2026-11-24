@@ -1,0 +1,46 @@
+[
+  {
+    "name": "우드 앤 앰버",
+    "en": "Wood & Amber",
+    "type": "candle",
+    "size": "220G",
+    "price": 58000,
+    "image": "images/product-wood-amber.webp",
+    "imageAlt": "브라운 앰버 글라스 캔들과 황동 뚜껑",
+    "best": true,
+    "soldOut": false
+  },
+  {
+    "name": "화이트 티 앤 피그",
+    "en": "White Tea & Fig",
+    "type": "diffuser",
+    "size": "200ML",
+    "price": 72000,
+    "image": "images/product-white-tea-fig.webp",
+    "imageAlt": "무화과 잎을 곁들인 프로스티드 글라스 디퓨저",
+    "best": true,
+    "soldOut": false
+  },
+  {
+    "name": "베티버 앤 시더",
+    "en": "Vetiver & Cedar",
+    "type": "candle",
+    "size": "220G",
+    "price": 58000,
+    "image": "images/product-vetiver-cedar.webp",
+    "imageAlt": "시더 우드 블록 옆 블랙 세라믹 캔들",
+    "best": true,
+    "soldOut": false
+  },
+  {
+    "name": "로즈 앤 블랙페퍼",
+    "en": "Rose & Black Pepper",
+    "type": "diffuser",
+    "size": "200ML",
+    "price": 72000,
+    "image": "images/product-rose-pepper.webp",
+    "imageAlt": "말린 장미 옆 핑크 틴트 글라스 디퓨저",
+    "best": true,
+    "soldOut": false
+  }
+]

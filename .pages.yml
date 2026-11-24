@@ -1,0 +1,276 @@
+# Pages CMS 설정 파일 — MAISON ORÉE
+# 운영자 편집 화면(https://app.pagescms.org)에 보이는 메뉴와 입력칸을 정합니다.
+# 사진은 images/uploads 폴더에 저장되고, 콘텐츠에는 "images/uploads/파일명" 경로로 기록됩니다.
+
+media:
+  input: images
+  output: images
+  rename: safe
+  extensions: [jpg, jpeg, png, webp]
+
+content:
+  # ── 1. 교육 프로그램 ─────────────────────────────
+  - name: programs
+    label: 교육 프로그램 (클래스)
+    type: file
+    path: content/programs.json
+    format: json
+    list: true
+    fields:
+      - { name: title, label: 클래스 이름, type: string, required: true }
+      - name: type
+        label: 종류
+        type: select
+        options:
+          values:
+            - { name: oneday, label: 원데이 클래스 }
+            - { name: regular, label: 정규 클래스 }
+            - { name: corporate, label: 기업·단체 클래스 }
+      - name: date
+        label: 날짜 (지난 날짜는 사이트에서 자동으로 숨겨집니다)
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - { name: time, label: 시작 시간 (예 14:00), type: string }
+      - { name: duration, label: 소요 시간 (예 2시간), type: string }
+      - { name: capacity, label: 정원 (예 6명), type: string }
+      - { name: price, label: 참가비 (숫자만, 원), type: number }
+      - { name: location, label: 장소, type: string }
+      - name: image
+        label: 사진 (세로 4:5 권장)
+        type: image
+        options:
+          path: images/uploads
+      - { name: imageAlt, label: 사진 설명 (화면 낭독기용), type: string }
+      - { name: summary, label: 소개 (2문장 이내), type: text }
+      - name: status
+        label: 모집 상태
+        type: select
+        options:
+          values:
+            - { name: open, label: 모집 중 }
+            - { name: few, label: 마감 임박 }
+            - { name: closed, label: 마감 }
+            - { name: soon, label: 오픈 예정 }
+      - { name: applyLink, label: 신청 링크 (네이버 예약 등. 비우면 상담 폼으로 연결), type: string }
+
+  # ── 2. 제작 실적 ─────────────────────────────────
+  - name: portfolio
+    label: 제작 실적
+    type: file
+    path: content/portfolio.json
+    format: json
+    list: true
+    fields:
+      - { name: title, label: 제목, type: string, required: true }
+      - name: category
+        label: 분류
+        type: select
+        options:
+          values:
+            - { name: engraving, label: 각인 선물 }
+            - { name: wedding, label: 웨딩 }
+            - { name: corporate, label: 기업 선물 }
+            - { name: class, label: 클래스 }
+            - { name: collab, label: 협업·공간 연출 }
+      - name: date
+        label: 제작 날짜
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - { name: client, label: 고객사 이름 (공개 동의를 받은 경우만), type: string }
+      - { name: quantity, label: 수량 (예 120개), type: string }
+      - { name: engraving, label: 새긴 문구 (있을 때만), type: string }
+      - name: image
+        label: 대표 사진 (정사각형 권장)
+        type: image
+        options:
+          path: images/uploads
+      - { name: imageAlt, label: 사진 설명 (화면 낭독기용), type: string }
+      - { name: summary, label: 설명 (2문장 이내), type: text }
+      - { name: featured, label: 맨 앞에 보이기, type: boolean }
+
+  # ── 3. 저널 (글) ─────────────────────────────────
+  - name: journal
+    label: 저널 (글)
+    type: file
+    path: content/journal.json
+    format: json
+    list: true
+    fields:
+      - { name: title, label: 제목, type: string, required: true }
+      - name: date
+        label: 게시 날짜
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: category
+        label: 분류
+        type: select
+        options:
+          values:
+            - { name: news, label: 소식 }
+            - { name: story, label: 이야기 }
+            - { name: guide, label: 사용 안내 }
+            - { name: event, label: 이벤트 }
+      - name: cover
+        label: 대표 사진 (가로 4:3 권장)
+        type: image
+        options:
+          path: images/uploads
+      - { name: coverAlt, label: 사진 설명 (화면 낭독기용), type: string }
+      - { name: summary, label: 요약 (목록에 보이는 2문장), type: text }
+      - name: body
+        label: 본문
+        type: rich-text
+        options:
+          format: html
+          path: images/uploads
+      - { name: published, label: 사이트에 공개, type: boolean }
+
+  # ── 4. 상품 ─────────────────────────────────────
+  - name: products
+    label: 상품
+    type: file
+    path: content/products.json
+    format: json
+    list: true
+    fields:
+      - { name: name, label: 상품명, type: string, required: true }
+      - { name: en, label: 영문 이름, type: string }
+      - name: type
+        label: 종류
+        type: select
+        options:
+          values:
+            - { name: candle, label: 캔들 }
+            - { name: diffuser, label: 디퓨저 }
+            - { name: spray, label: 룸 스프레이 }
+            - { name: gift, label: 기프트 세트 }
+      - { name: size, label: 용량 (예 220G, 200ML), type: string }
+      - { name: price, label: 가격 (숫자만, 원), type: number }
+      - name: image
+        label: 상품 사진 (세로 4:5 권장)
+        type: image
+        options:
+          path: images/uploads
+      - { name: imageAlt, label: 사진 설명 (화면 낭독기용), type: string }
+      - { name: best, label: 베스트셀러에 보이기, type: boolean }
+      - { name: soldOut, label: 품절, type: boolean }
+
+  # ── 5. 사이트 문구와 사진 ─────────────────────────
+  - name: site
+    label: 사이트 문구와 사진
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - { name: announcement, label: 맨 위 안내 띠, type: string }
+      - name: hero
+        label: 메인 첫 화면
+        type: object
+        fields:
+          - { name: eyebrow, label: 작은 머리글, type: string }
+          - { name: title, label: 큰 제목 (Enter로 줄바꿈), type: text }
+          - { name: description, label: 설명 (Enter로 줄바꿈), type: text }
+          - name: image
+            label: 배경 사진 (가로 1920px 이상)
+            type: image
+            options:
+              path: images/uploads
+          - { name: imageAlt, label: 사진 설명, type: string }
+          - { name: primaryLabel, label: 첫 번째 버튼 글자, type: string }
+          - { name: primaryLink, label: 첫 번째 버튼 링크, type: string }
+          - { name: secondaryLabel, label: 두 번째 버튼 글자, type: string }
+          - { name: secondaryLink, label: 두 번째 버튼 링크, type: string }
+      - name: philosophy
+        label: 브랜드 문장
+        type: object
+        fields:
+          - { name: text, label: 문장 (Enter로 줄바꿈), type: text }
+          - { name: linkLabel, label: 링크 글자, type: string }
+      - name: categories
+        label: 카테고리 칸
+        type: object
+        list: true
+        fields:
+          - { name: en, label: 영문 이름, type: string }
+          - { name: kr, label: 한글 이름, type: string }
+          - { name: count, label: 개수 표시 (예 24 items), type: string }
+          - name: image
+            label: 사진 (세로 3:4 권장)
+            type: image
+            options:
+              path: images/uploads
+          - { name: imageAlt, label: 사진 설명, type: string }
+          - name: filter
+            label: 누르면 보여줄 상품 종류
+            type: select
+            options:
+              values:
+                - { name: candle, label: 캔들 }
+                - { name: diffuser, label: 디퓨저 }
+                - { name: spray, label: 룸 스프레이 }
+                - { name: gift, label: 기프트 세트 }
+      - name: craft
+        label: 아틀리에 소개
+        type: object
+        fields:
+          - { name: title, label: 제목 (Enter로 줄바꿈), type: text }
+          - { name: text, label: 본문, type: text }
+          - name: image
+            label: 사진 (세로)
+            type: image
+            options:
+              path: images/uploads
+          - { name: imageAlt, label: 사진 설명, type: string }
+          - name: stats
+            label: 숫자 3칸
+            type: object
+            list: true
+            fields:
+              - { name: value, label: 숫자 (예 60h), type: string }
+              - { name: label, label: 설명, type: string }
+      - name: gift
+        label: 기프트 소개
+        type: object
+        fields:
+          - { name: title, label: 제목 (Enter로 줄바꿈), type: text }
+          - { name: text, label: 본문 (Enter로 줄바꿈), type: text }
+          - name: image
+            label: 사진
+            type: image
+            options:
+              path: images/uploads
+          - { name: imageAlt, label: 사진 설명, type: string }
+          - { name: buttonLabel, label: 버튼 글자, type: string }
+          - { name: buttonLink, label: 버튼 링크, type: string }
+      - name: services
+        label: 서비스 안내 띠
+        type: object
+        list: true
+        fields:
+          - { name: en, label: 영문, type: string }
+          - { name: kr, label: 한글 설명, type: string }
+      - name: contact
+        label: 연락처와 사업자 정보
+        type: object
+        fields:
+          - { name: address, label: 주소, type: string }
+          - { name: email, label: 이메일, type: string }
+          - { name: phone, label: 전화번호, type: string }
+          - { name: kakaoLink, label: 카카오톡 채널 링크, type: string }
+          - { name: instagramLink, label: 인스타그램 링크, type: string }
+          - { name: businessInfo, label: 사업자 정보 (상호, 대표, 사업자번호 등), type: text }
+          - { name: imageNote, label: 이미지 안내 문구, type: string }
+      - name: inquiry
+        label: 기업·단체 상담 폼
+        type: object
+        fields:
+          - { name: endpoint, label: 수신 주소 (Apps Script 웹 앱 URL. README 「상담 폼 수신 연결」 참고), type: string }
+          - { name: responseTime, label: 답변 시점 안내 (예 영업일 기준 1일 안에), type: string }
+          - { name: types, label: 문의 유형 목록, type: string, list: true }
+          - { name: privacyPurpose, label: 개인정보 수집·이용 목적, type: string }
+          - { name: privacyItems, label: 수집 항목, type: text }
+          - { name: privacyRetention, label: 보유·이용 기간 (Apps Script의 RETENTION_DAYS와 맞추기), type: string }
+          - { name: consentVersion, label: 동의 문구 버전 (문구를 바꾸면 날짜로 갱신), type: string }

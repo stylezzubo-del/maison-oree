@@ -1,0 +1,74 @@
+[
+  {
+    "title": "예시: 웨딩 답례 각인 캔들",
+    "category": "wedding",
+    "date": "2026-10-18",
+    "client": "",
+    "quantity": "120개",
+    "engraving": "Thank you for being with us",
+    "image": "images/product-wood-amber.webp",
+    "imageAlt": "황동 뚜껑의 앰버 글라스 캔들",
+    "summary": "하객 답례품으로 80g 미니 캔들에 두 사람의 이니셜과 날짜를 새겼습니다.",
+    "featured": true
+  },
+  {
+    "title": "예시: 기업 연말 선물 세트",
+    "category": "corporate",
+    "date": "2026-11-20",
+    "client": "",
+    "quantity": "300세트",
+    "engraving": "",
+    "image": "images/gift-set.webp",
+    "imageAlt": "리본으로 포장한 캔들과 디퓨저 선물 세트",
+    "summary": "캔들과 디퓨저 세트에 회사 로고를 각인하고 감사 카드를 함께 넣었습니다.",
+    "featured": true
+  },
+  {
+    "title": "예시: 생일 메시지 각인 디퓨저",
+    "category": "engraving",
+    "date": "2026-09-05",
+    "client": "",
+    "quantity": "1개",
+    "engraving": "Happy birthday, my dear",
+    "image": "images/product-white-tea-fig.webp",
+    "imageAlt": "무화과 잎 옆 프로스티드 글라스 디퓨저",
+    "summary": "받는 분이 좋아하는 무화과 향 디퓨저에 생일 문구를 새겼습니다.",
+    "featured": false
+  },
+  {
+    "title": "예시: 브랜드 팝업 공간 연출",
+    "category": "collab",
+    "date": "2026-08-22",
+    "client": "",
+    "quantity": "",
+    "engraving": "",
+    "image": "images/hero.webp",
+    "imageAlt": "트래버틴 테이블 위 캔들과 디퓨저",
+    "summary": "팝업 매장의 향과 조명을 맞춰 캔들과 디퓨저로 공간을 연출했습니다.",
+    "featured": false
+  },
+  {
+    "title": "예시: 사내 향 만들기 클래스",
+    "category": "class",
+    "date": "2026-07-11",
+    "client": "",
+    "quantity": "24명",
+    "engraving": "",
+    "image": "images/atelier.webp",
+    "imageAlt": "소이 왁스를 붓는 손",
+    "summary": "팀 워크숍으로 진행한 출장 클래스입니다. 참가자마다 캔들 하나를 완성했습니다.",
+    "featured": false
+  },
+  {
+    "title": "예시: 기념일 이니셜 캔들",
+    "category": "engraving",
+    "date": "2026-06-14",
+    "client": "",
+    "quantity": "2개",
+    "engraving": "J & M, since 2016",
+    "image": "images/product-vetiver-cedar.webp",
+    "imageAlt": "시더 우드 블록 옆 블랙 세라믹 캔들",
+    "summary": "10주년 기념으로 두 사람의 이니셜과 연도를 새긴 캔들 한 쌍입니다.",
+    "featured": false
+  }
+]

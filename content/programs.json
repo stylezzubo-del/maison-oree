@@ -1,0 +1,47 @@
+[
+  {
+    "title": "예시: 나만의 향 캔들 원데이 클래스",
+    "type": "oneday",
+    "date": "2026-12-12",
+    "time": "14:00",
+    "duration": "2시간",
+    "capacity": "6명",
+    "price": 85000,
+    "location": "아틀리에",
+    "image": "images/atelier.webp",
+    "imageAlt": "녹인 소이 왁스를 유리 용기에 붓는 손",
+    "summary": "세 가지 향 오일을 직접 블렌딩해 220g 캔들 하나를 완성합니다. 완성품은 숙성 후 택배로 보내 드립니다.",
+    "status": "open",
+    "applyLink": "#inquiry"
+  },
+  {
+    "title": "예시: 크리스마스 기프트 캔들 클래스",
+    "type": "oneday",
+    "date": "2026-12-19",
+    "time": "11:00",
+    "duration": "2시간 30분",
+    "capacity": "8명",
+    "price": 98000,
+    "location": "아틀리에",
+    "image": "images/gift-set.webp",
+    "imageAlt": "리본으로 포장한 캔들 선물 세트",
+    "summary": "캔들을 만들고 각인 메시지와 리본 포장까지 마쳐 선물로 가져갑니다.",
+    "status": "few",
+    "applyLink": "#inquiry"
+  },
+  {
+    "title": "예시: 조향 기초 4주 정규반",
+    "type": "regular",
+    "date": "2027-01-09",
+    "time": "10:30",
+    "duration": "매주 토요일, 4주",
+    "capacity": "4명",
+    "price": 360000,
+    "location": "아틀리에",
+    "image": "images/cat-diffusers.webp",
+    "imageAlt": "트래버틴 위 리드 디퓨저",
+    "summary": "향 계열과 노트 구조를 배우고, 마지막 주에 나만의 디퓨저 오일을 완성합니다.",
+    "status": "soon",
+    "applyLink": "#inquiry"
+  }
+]

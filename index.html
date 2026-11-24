@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAISON ORÉE 캔들과 디퓨저</title>
+<meta name="description" content="천연 소이 왁스와 조향사가 블렌딩한 오일로 만드는 서울의 프래그런스 아틀리에, MAISON ORÉE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ===== Design tokens (Figma: Color collection) ===== */
+:root{
+  --ivory:#F6F1EA; --cream:#ECE4D8; --sand:#D8CBB8; --line:#DDD3C4;
+  --taupe:#8C7E6E; --brass:#A8875A; --ink:#1F1B18; --deep:#2B2521; --white:#FFFFFF;
+  --placeholder:#C9BBA8;
+  --f-en:'Cormorant Garamond', 'Times New Roman', serif;
+  --f-kr:'Noto Serif KR', serif;
+  --f-sans:'Noto Sans KR', system-ui, sans-serif;
+  --pad-x:120px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--ink);font-family:var(--f-sans);font-weight:300;-webkit-font-smoothing:antialiased;line-height:1.5;word-break:keep-all;overflow-wrap:anywhere}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:1440px;margin:0 auto}
+
+/* ===== Shared type ===== */
+.eyebrow{font-family:var(--f-en);font-weight:500;font-size:13px;letter-spacing:.34em;color:var(--brass);text-transform:uppercase}
+.eyebrow.on-dark{color:var(--sand)}
+.h-section{font-family:var(--f-kr);font-weight:300;font-size:38px;letter-spacing:-.01em;line-height:1.45}
+.link{font-family:var(--f-sans);font-weight:400;font-size:13px;letter-spacing:.1em;white-space:pre;transition:opacity .3s}
+.link:hover{opacity:.6}
+.u{text-decoration:underline;text-underline-offset:4px}
+
+/* ===== Buttons (Figma components Button/*) ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:17px 40px;font-family:var(--f-sans);font-weight:400;font-size:13px;letter-spacing:.14em;border:1px solid transparent;transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease);white-space:nowrap}
+.btn--dark{background:var(--ink);color:var(--white)}
+.btn--dark:hover{background:var(--brass)}
+.btn--light{background:var(--ivory);color:var(--ink)}
+.btn--light:hover{background:var(--brass);color:var(--white)}
+.btn--outline{border-color:var(--ink);color:var(--ink)}
+.btn--outline:hover{background:var(--ink);color:var(--white)}
+.btn--outline-light{border-color:var(--white);color:var(--white)}
+.btn--outline-light:hover{background:var(--white);color:var(--ink)}
+
+/* ===== Announcement + Header ===== */
+.announce{background:var(--ink);color:var(--sand);text-align:center;font-size:12px;letter-spacing:.08em;padding:11px 16px;white-space:pre-wrap}
+.header{position:sticky;top:0;z-index:50;background:var(--ivory);border-bottom:1px solid var(--line);transition:box-shadow .3s}
+.header.scrolled{box-shadow:0 6px 24px rgba(31,27,24,.06)}
+.header__in{height:92px;padding:0 60px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.nav{display:flex;gap:36px;font-size:14px;font-weight:400;letter-spacing:.04em}
+.nav a{position:relative;padding:4px 0}
+.nav a::after{content:"";position:absolute;left:0;bottom:-2px;width:100%;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav a:hover::after{transform:scaleX(1)}
+.logo{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.logo__name{font-family:var(--f-en);font-weight:300;font-size:30px;letter-spacing:.26em;line-height:1.2;margin-right:-.26em}
+.logo__sub{font-family:var(--f-en);font-weight:500;font-size:9px;letter-spacing:.34em;color:var(--taupe)}
+.utils{display:flex;justify-content:flex-end;align-items:center;gap:26px}
+.utils .lang{font-family:var(--f-en);font-weight:500;font-size:13px;letter-spacing:.14em}
+.icon-btn{display:inline-flex;align-items:center;gap:6px;transition:opacity .3s}
+.icon-btn:hover{opacity:.55}
+.icon-btn img{width:20px;height:20px}
+.bag-count{font-family:var(--f-en);font-weight:500;font-size:14px;min-width:7px}
+.bag-count.bump{animation:bump .5s var(--ease)}
+@keyframes bump{40%{transform:scale(1.6);color:var(--brass)}}
+.menu-toggle{display:none;width:24px;height:24px;position:relative}
+.menu-toggle span{position:absolute;left:2px;right:2px;height:1px;background:var(--ink);transition:transform .3s,opacity .3s}
+.menu-toggle span:nth-child(1){top:7px}.menu-toggle span:nth-child(2){top:12px}.menu-toggle span:nth-child(3){top:17px}
+.menu-open .menu-toggle span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.menu-open .menu-toggle span:nth-child(2){opacity:0}
+.menu-open .menu-toggle span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+.mobile-nav{display:none}
+
+/* ===== Hero ===== */
+.hero{position:relative;height:820px;display:flex;align-items:center;padding-left:var(--pad-x);overflow:hidden;background:#4A3F36}
+.hero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);animation:heroZoom 9s var(--ease) forwards}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,23,20,.7) 0%,rgba(28,23,20,.18) 55%,rgba(28,23,20,0) 100%)}
+.hero__content{position:relative;z-index:1;display:flex;flex-direction:column;gap:28px}
+.hero__eyebrow{font-family:var(--f-en);font-weight:500;font-size:14px;letter-spacing:.3em;color:var(--sand)}
+.hero__title{font-family:var(--f-kr);font-weight:300;font-size:62px;line-height:1.38;letter-spacing:-.01em;color:var(--white)}
+.hero__desc{font-size:16px;line-height:1.75;color:var(--cream)}
+.hero__actions{display:flex;gap:12px;padding-top:16px;flex-wrap:wrap}
+.hero__pager,.hero__scroll{position:absolute;z-index:1;bottom:56px;color:var(--white);font-family:var(--f-en)}
+.hero__pager{left:var(--pad-x);font-size:14px;letter-spacing:.2em;white-space:pre}
+.hero__scroll{right:var(--pad-x);font-weight:500;font-size:11px;letter-spacing:.4em}
+.hero__content > *{opacity:0;transform:translateY(18px);animation:rise 1s var(--ease) forwards}
+.hero__content > *:nth-child(2){animation-delay:.15s}.hero__content > *:nth-child(3){animation-delay:.3s}.hero__content > *:nth-child(4){animation-delay:.45s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ===== Philosophy ===== */
+.philosophy{padding:150px 24px;display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center}
+.philosophy__text{font-family:var(--f-kr);font-weight:300;font-size:32px;line-height:1.7;max-width:900px}
+
+/* ===== Section head ===== */
+.section{padding:0 var(--pad-x) 150px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px}
+.section-head__l{display:flex;flex-direction:column;gap:14px}
+
+/* ===== Categories ===== */
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.cat{position:relative;height:540px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:0 36px 36px;color:var(--white);background:#B8A892}
+.cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,23,20,0) 45%,rgba(28,23,20,.6) 100%)}
+.cat:hover img{transform:scale(1.05)}
+.cat > *:not(img){position:relative;z-index:1}
+.cat__en{font-family:var(--f-en);font-weight:300;font-style:italic;font-size:44px;line-height:1.2}
+.cat__row{display:flex;justify-content:space-between;align-items:center}
+.cat__kr{font-size:13px;letter-spacing:.06em;color:var(--cream);white-space:pre}
+.cat__arrow{font-family:var(--f-en);font-weight:300;font-size:22px;transition:transform .4s var(--ease)}
+.cat:hover .cat__arrow{transform:translateX(6px)}
+
+/* ===== Products (Figma component ProductCard) ===== */
+.tabs{display:flex;gap:28px;font-size:14px;letter-spacing:.04em}
+.tab{color:var(--taupe);font-weight:400;padding-bottom:2px;transition:color .3s}
+.tab:hover{color:var(--ink)}
+.tab.is-active{color:var(--ink);font-weight:500;text-decoration:underline;text-underline-offset:4px}
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;min-height:487px}
+.card{display:flex;flex-direction:column;animation:fade .5s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.card__media{position:relative;height:360px;overflow:hidden;background:var(--placeholder)}
+.card__media img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.card:hover .card__media img{transform:scale(1.04)}
+.card__wish{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(246,241,234,.85);display:grid;place-items:center;opacity:0;transition:opacity .3s}
+.card:hover .card__wish,.card__wish.on{opacity:1}
+.card__wish svg{width:18px;height:18px}
+.card__wish.on path{fill:var(--ink)}
+.card__add{position:absolute;left:14px;right:14px;bottom:14px;padding:14px;background:var(--ink);color:var(--white);font-size:13px;font-weight:400;letter-spacing:.14em;transform:translateY(calc(100% + 16px));transition:transform .45s var(--ease),background .3s}
+.card:hover .card__add,.card__add:focus{transform:none}
+.card__add:hover{background:var(--brass)}
+.card__info{display:flex;flex-direction:column;gap:6px;padding-top:22px}
+.card__type{font-family:var(--f-en);font-weight:500;font-size:12px;letter-spacing:.16em;color:var(--taupe)}
+.card__name{font-family:var(--f-kr);font-weight:400;font-size:18px}
+.card__en{font-family:var(--f-en);font-style:italic;font-size:17px;color:var(--taupe)}
+.card__price{padding-top:8px;font-size:14px}
+.empty{grid-column:1/-1;display:grid;place-items:center;color:var(--taupe);font-size:15px;border:1px dashed var(--line)}
+.center{display:flex;justify-content:center;padding-top:64px}
+
+/* ===== Scent family (Figma: pl 90 / pr 84) ===== */
+.scent{background:var(--cream);padding:140px 84px 140px 90px;display:flex;gap:120px;align-items:flex-start}
+.scent__l{width:380px;flex-shrink:0;display:flex;flex-direction:column;gap:24px}
+.scent__desc{font-size:15px;line-height:1.8;color:var(--taupe)}
+.scent__l .btn{align-self:flex-start;margin-top:12px}
+.notes{flex:1;min-width:0;list-style:none;border-bottom:1px solid var(--sand)}
+.note{border-top:1px solid var(--sand);padding:32px 0;display:flex;align-items:center;gap:40px;cursor:pointer;transition:padding .4s var(--ease)}
+.note:hover{padding-left:12px}
+.note__no{font-family:var(--f-en);font-size:15px;letter-spacing:.1em;color:var(--brass)}
+.note__name{width:240px;flex-shrink:0;display:flex;align-items:baseline;gap:12px}
+.note__name b{font-family:var(--f-en);font-weight:300;font-style:italic;font-size:34px;line-height:1.2}
+.note__name small{font-family:var(--f-kr);font-weight:400;font-size:14px;color:var(--taupe)}
+.note__desc{flex:1;font-size:15px;line-height:1.7;color:var(--deep)}
+.note__arrow{font-family:var(--f-en);font-weight:300;font-size:22px;transition:transform .4s var(--ease)}
+.note:hover .note__arrow{transform:translateX(6px)}
+
+/* ===== Craft story ===== */
+.craft{display:flex;align-items:center}
+.craft__img{width:50%;height:760px;object-fit:cover;flex-shrink:0;background:var(--placeholder)}
+.craft__body{flex:1;padding:0 120px 0 110px;display:flex;flex-direction:column;gap:28px}
+.craft__title{font-family:var(--f-kr);font-weight:300;font-size:40px;line-height:1.45;letter-spacing:-.01em}
+.craft__text{font-size:15px;line-height:1.85;color:var(--taupe)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);padding:20px 0}
+.stat{padding-top:20px;display:flex;flex-direction:column;gap:6px}
+.stat b{font-family:var(--f-en);font-weight:300;font-size:40px;line-height:1.2}
+.stat span{font-size:13px;letter-spacing:.04em;color:var(--taupe)}
+.craft__body .btn{align-self:flex-start}
+
+/* ===== Gift edit ===== */
+.gift{background:var(--deep);padding:120px;display:flex;align-items:center;gap:100px}
+.gift__body{flex:1;display:flex;flex-direction:column;gap:28px}
+.gift__title{font-family:var(--f-kr);font-weight:300;font-size:42px;line-height:1.45;letter-spacing:-.01em;color:var(--white)}
+.gift__desc{font-size:15px;line-height:1.85;color:var(--sand)}
+.gift__actions{display:flex;align-items:flex-start;gap:12px;padding-top:12px;flex-wrap:wrap}
+.gift__actions .link{color:var(--white);padding-top:17px}
+.gift__img{width:620px;height:560px;object-fit:cover;flex-shrink:0;background:#5A4E44}
+
+/* ===== Services ===== */
+.services{display:grid;grid-template-columns:repeat(4,1fr);padding:56px var(--pad-x);border-bottom:1px solid var(--line);text-align:center}
+.service{display:flex;flex-direction:column;gap:6px}
+.service b{font-family:var(--f-en);font-weight:400;font-style:italic;font-size:20px}
+.service span{font-size:13px;letter-spacing:.04em;color:var(--taupe)}
+
+/* ===== Newsletter ===== */
+.newsletter{padding:140px 24px;display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center}
+.newsletter h2{font-family:var(--f-kr);font-weight:300;font-size:36px;letter-spacing:-.01em}
+.newsletter p{font-size:15px;color:var(--taupe)}
+.nl-form{width:520px;max-width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid var(--ink);padding:24px 0 14px}
+.nl-form input{flex:1;border:0;background:none;font:300 14px var(--f-sans);color:var(--ink);outline:none}
+.nl-form input::placeholder{color:var(--taupe)}
+.nl-form button{font-weight:500;font-size:13px;letter-spacing:.1em;white-space:pre}
+.nl-form button:hover{color:var(--brass)}
+.nl-msg{font-size:13px;min-height:20px}
+.nl-msg.err{color:#A2533F}.nl-msg.ok{color:var(--brass)}
+
+/* ===== Footer ===== */
+.footer{background:var(--ink);padding:100px var(--pad-x) 48px;display:flex;flex-direction:column;gap:80px}
+.footer__top{display:flex;justify-content:space-between;gap:48px}
+.footer__brand{display:flex;flex-direction:column;gap:16px}
+.footer__logo{font-family:var(--f-en);font-weight:300;font-size:32px;letter-spacing:.26em;color:var(--white)}
+.footer__tag{font-size:14px;line-height:1.8;color:var(--sand)}
+.footer__cols{display:flex;gap:96px}
+.footer__col{display:flex;flex-direction:column;gap:14px;list-style:none}
+.footer__col h4{font-family:var(--f-en);font-weight:500;font-size:13px;letter-spacing:.3em;color:var(--brass)}
+.footer__col a{font-size:14px;color:var(--cream);transition:color .3s}
+.footer__col a:hover{color:var(--white)}
+.footer__bottom{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.15);padding-top:28px;font-size:12px}
+.footer__copy{color:var(--sand);white-space:pre-wrap}
+.footer__sns{display:flex;gap:36px;font-family:var(--f-en);font-weight:500;letter-spacing:.2em;color:var(--sand)}
+.footer__sns a:hover{color:var(--white)}
+
+/* ===== Toast ===== */
+.toast{position:fixed;left:50%;bottom:32px;z-index:100;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:var(--white);padding:16px 28px;font-size:13px;letter-spacing:.06em;transition:opacity .35s,transform .35s var(--ease);pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+
+/* ===== CMS sections: shared ===== */
+.sec-note{font-size:14px;color:var(--taupe);line-height:1.7;max-width:420px}
+.badge{display:inline-block;font-size:12px;padding:3px 10px;border:1px solid currentColor;letter-spacing:.04em;white-space:nowrap}
+.badge--open{color:var(--brass)}.badge--few{color:#A2533F}.badge--closed{color:var(--taupe)}.badge--soon{color:var(--deep)}
+.btn--sm{padding:12px 26px}
+.btn[aria-disabled="true"]{opacity:.35;pointer-events:none}
+.empty-row{padding:48px 0;color:var(--taupe);font-size:15px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+/* ===== Programs (교육 프로그램) ===== */
+.prog-list{list-style:none;border-top:1px solid var(--line)}
+.prog{display:grid;grid-template-columns:150px 120px minmax(0,1fr) auto;gap:40px;align-items:center;padding:32px 0;border-bottom:1px solid var(--line)}
+.prog__date b{display:block;font-family:var(--f-en);font-weight:300;font-size:46px;line-height:1;font-variant-numeric:lining-nums}
+.prog__date span{display:block;margin-top:8px;font-size:13px;color:var(--taupe)}
+.prog__img{width:120px;aspect-ratio:4/5;object-fit:cover;background:var(--placeholder)}
+.prog__type{font-size:12px;letter-spacing:.06em;color:var(--brass)}
+.prog__title{margin-top:6px;font-family:var(--f-kr);font-weight:400;font-size:22px;line-height:1.45}
+.prog__summary{margin-top:8px;max-width:560px;font-size:14px;line-height:1.75;color:var(--taupe)}
+.prog__meta{margin-top:10px;font-size:13px;color:var(--deep)}
+.prog__side{display:flex;flex-direction:column;align-items:flex-end;gap:14px;min-width:150px}
+.prog__price{font-size:16px;font-weight:400}
+
+/* ===== Portfolio (제작 실적) ===== */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:9px 18px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--taupe);transition:border-color .3s,color .3s}
+.chip:hover{color:var(--ink)}
+.chip.is-active{border-color:var(--ink);color:var(--ink)}
+.pf-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 24px}
+.pf{display:flex;flex-direction:column;animation:fade .5s var(--ease)}
+.pf__media{aspect-ratio:1;overflow:hidden;background:var(--placeholder)}
+.pf__media img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.pf:hover .pf__media img{transform:scale(1.04)}
+.pf__meta{margin-top:18px;font-size:12px;letter-spacing:.04em;color:var(--taupe)}
+.pf__title{margin-top:6px;font-family:var(--f-kr);font-weight:400;font-size:19px;line-height:1.45}
+.pf__quote{margin-top:8px;font-family:var(--f-en);font-style:italic;font-size:18px;color:var(--brass)}
+.pf__summary{margin-top:6px;font-size:14px;line-height:1.75;color:var(--taupe)}
+
+/* ===== Journal (저널) ===== */
+.journal{background:var(--cream);padding-top:140px}
+.jr-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.jr{display:flex;flex-direction:column;text-align:left;cursor:pointer}
+.jr__media{aspect-ratio:4/3;overflow:hidden;background:var(--placeholder)}
+.jr__media img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.jr:hover .jr__media img{transform:scale(1.04)}
+.jr__meta{margin-top:20px;font-size:12px;letter-spacing:.04em;color:var(--taupe)}
+.jr__title{margin-top:8px;font-family:var(--f-kr);font-weight:400;font-size:20px;line-height:1.5}
+.jr__summary{margin-top:8px;font-size:14px;line-height:1.75;color:var(--taupe)}
+.jr__more{margin-top:14px;font-size:13px;letter-spacing:.08em;text-decoration:underline;text-underline-offset:4px}
+.post{width:min(760px,calc(100% - 32px));max-height:calc(100% - 48px);margin:auto;border:0;padding:0;background:var(--ivory);color:var(--ink)}
+.post::backdrop{background:rgba(31,27,24,.62)}
+.post__cover{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--placeholder)}
+.post__body{padding:44px 56px 56px}
+.post__meta{font-size:12px;letter-spacing:.04em;color:var(--taupe)}
+.post__title{margin-top:10px;font-family:var(--f-kr);font-weight:300;font-size:32px;line-height:1.4}
+.post__content{margin-top:28px;font-size:16px;line-height:1.9;color:var(--deep)}
+.post__content p,.post__content ul,.post__content ol{margin-bottom:1.1em}
+.post__content ul,.post__content ol{padding-left:1.3em}
+.post__content h2,.post__content h3{font-family:var(--f-kr);font-weight:400;margin:1.6em 0 .6em;line-height:1.45}
+.post__content h2{font-size:24px}.post__content h3{font-size:20px}
+.post__content img{margin:1.2em 0;height:auto}
+.post__content a{text-decoration:underline;text-underline-offset:3px}
+.post__close{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;background:rgba(246,241,234,.92);font-size:22px;line-height:44px;z-index:1}
+
+
+/* ===== B2B inquiry form (기업·단체 상담) ===== */
+.inquiry{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:96px;padding:150px var(--pad-x);border-top:1px solid var(--line)}
+.inquiry__intro{display:flex;flex-direction:column;gap:24px;position:sticky;top:124px;align-self:start}
+.inquiry__lead{font-size:15px;line-height:1.85;color:var(--taupe)}
+.inq-steps{list-style:none;border-top:1px solid var(--line);margin-top:8px}
+.inq-steps li{display:grid;grid-template-columns:40px 1fr;padding:15px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--deep)}
+.inq-steps b{font-family:var(--f-en);font-weight:400;font-size:17px;color:var(--brass)}
+.inq-direct{font-size:14px;line-height:1.9;color:var(--deep)}
+.inq-direct a{text-decoration:underline;text-underline-offset:3px}
+.inq-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 20px;align-content:start}
+.field{display:flex;flex-direction:column;gap:8px}
+.field--full{grid-column:1/-1}
+.field label{font-size:13px;font-weight:400;color:var(--deep)}
+.field label em{font-style:normal;font-size:12px;color:var(--brass);margin-left:6px}
+.field input,.field select,.field textarea{width:100%;min-height:52px;padding:14px 16px;border:1px solid var(--sand);border-radius:0;background:#FBF8F3;font:300 16px/1.5 var(--f-sans);color:var(--ink);transition:border-color .25s;-webkit-appearance:none;appearance:none}
+.field textarea{min-height:190px;resize:vertical;line-height:1.75}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%238C7E6E' stroke-width='1.3'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:44px}
+.field input::placeholder,.field textarea::placeholder{color:#A99B8A}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink)}
+.field [aria-invalid="true"]{border-color:#A2533F;background:#FBF3EF}
+.field__err{font-size:13px;line-height:1.5;color:#A2533F}
+.field__err:empty{display:none}
+.field__count{font-size:12px;color:var(--taupe);text-align:right}
+.hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.consent{grid-column:1/-1;border:1px solid var(--line);background:#FBF8F3;padding:22px 24px 24px}
+.consent legend{padding:0 8px;font-size:14px;font-weight:500;color:var(--ink)}
+.consent__table{display:grid;gap:10px;margin:6px 0 14px;font-size:13px}
+.consent__table div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px}
+.consent__table dt{color:var(--taupe)}
+.consent__table dd{color:var(--deep);line-height:1.7}
+.consent__note{margin-bottom:16px;font-size:13px;line-height:1.7;color:var(--taupe)}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.6;cursor:pointer}
+.check input{flex:none;width:20px;height:20px;margin-top:2px;accent-color:var(--ink)}
+.inq-submit{grid-column:1/-1;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.inq-submit .btn{min-width:210px}
+.btn[disabled]{opacity:.55;cursor:progress}
+.inq-status{font-size:14px;line-height:1.7}
+.inq-status.err{color:#A2533F}
+.inq-done{border:1px solid var(--line);background:#FBF8F3;padding:56px;display:flex;flex-direction:column;align-items:flex-start;gap:18px;align-self:start}
+.inq-done h3{font-family:var(--f-kr);font-weight:300;font-size:30px;line-height:1.4}
+.inq-done p{font-size:15px;line-height:1.85;color:var(--taupe)}
+
+/* ===== Footer contact ===== */
+.footer__contact{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--sand);line-height:1.7}
+.footer__contact a:hover{color:var(--white)}
+.load-error{padding:16px 24px;background:#F3E3DA;color:#7A3524;font-size:14px;text-align:center}
+
+/* ===== Reveal on scroll ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal,.hero__content>*{opacity:1;transform:none}}
+
+/* ===== Responsive ===== */
+@media (max-width:1200px){
+  :root{--pad-x:64px}
+  .header__in{padding:0 32px}
+  .nav{gap:24px}
+  .scent{padding:120px 64px;gap:64px}
+  .craft__body{padding:0 64px}
+  .gift{padding:100px 64px;gap:64px}
+  .gift__img{width:48%;height:auto;aspect-ratio:620/560}
+  .footer__cols{gap:56px}
+}
+@media (max-width:1024px){
+  .nav,.utils .lang,.utils .hide-m{display:none}
+  .menu-toggle{display:block}
+  .mobile-nav{display:block;position:fixed;inset:0;top:0;z-index:40;background:var(--ivory);padding:150px 32px 32px;transform:translateY(-100%);transition:transform .5s var(--ease)}
+  .menu-open .mobile-nav{transform:none}
+  .mobile-nav a{display:block;font-family:var(--f-kr);font-weight:300;font-size:28px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .hero{height:680px}
+  .hero__title{font-size:48px}
+  .product-grid{grid-template-columns:repeat(2,1fr);row-gap:48px}
+  .scent{flex-direction:column}
+  .scent__l{width:100%}
+  .notes{width:100%}
+  .craft{flex-direction:column}
+  .craft__img{width:100%;height:560px}
+  .craft__body{padding:80px 64px}
+  .gift{flex-direction:column;align-items:stretch}
+  .gift__img{width:100%}
+  .services{grid-template-columns:repeat(2,1fr);row-gap:32px}
+  .footer__top{flex-direction:column}
+  .prog{grid-template-columns:110px minmax(0,1fr) auto;gap:28px}
+  .prog__img{display:none}
+  .pf-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .jr-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .inquiry{grid-template-columns:1fr;gap:56px}
+  .inquiry__intro{position:static}
+}
+@media (max-width:768px){
+  :root{--pad-x:24px}
+  .header__in{height:72px;padding:0 20px;grid-template-columns:1fr auto 1fr;gap:10px}
+  .logo__name{font-size:clamp(18px,5vw,22px);letter-spacing:.17em;margin-right:-.17em}
+  .logo__sub{display:none}
+  .utils{gap:12px}
+  .hero{height:600px;align-items:flex-end;padding-bottom:110px}
+  .hero__bg{object-position:77% center}
+  .hero::after{background:linear-gradient(0deg,rgba(28,23,20,.78) 0%,rgba(28,23,20,.2) 60%,rgba(28,23,20,0) 100%)}
+  .hero__title{font-size:36px}
+  .hero__desc{font-size:14px}
+  .hero__desc br{display:none}
+  .hero__scroll{display:none}
+  .hero__pager{bottom:40px}
+  .philosophy{padding:96px 24px}
+  .philosophy__text{font-size:21px}
+  .philosophy__text br{display:none}
+  .section{padding-bottom:96px}
+  .h-section{font-size:28px}
+  .section-head{flex-direction:column;align-items:flex-start;margin-bottom:32px}
+  .cat-grid{grid-template-columns:1fr}
+  .cat{height:380px}
+  .product-grid{gap:16px;row-gap:40px}
+  .card__media{height:auto;aspect-ratio:282/360}
+  .card__wish,.card__add{opacity:1;transform:none}
+  .card__add{display:none}
+  .card__name{font-size:16px}
+  .scent{padding:96px 24px}
+  .note{flex-wrap:wrap;gap:8px 20px;padding:24px 0}
+  .note__name{width:auto}
+  .note__desc{flex-basis:100%;order:4;font-size:14px}
+  .note__arrow{margin-left:auto}
+  .craft__img{height:420px}
+  .craft__body{padding:72px 24px}
+  .craft__title,.gift__title{font-size:30px}
+  .stat b{font-size:30px}
+  .gift{padding:80px 24px;gap:48px}
+  .services{grid-template-columns:1fr 1fr;padding:48px 24px;gap:28px 12px}
+  .newsletter{padding:96px 24px}
+  .newsletter h2{font-size:26px}
+  .footer{padding:72px 24px 40px;gap:56px}
+  .footer__cols{flex-wrap:wrap;gap:40px 56px}
+  .footer__bottom{flex-direction:column}
+  .prog{grid-template-columns:72px minmax(0,1fr);gap:8px 20px;padding:28px 0}
+  .prog__date b{font-size:32px}
+  .prog__side{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;min-width:0;margin-top:8px}
+  .prog__title{font-size:19px}
+  .pf-grid{grid-template-columns:1fr;gap:40px}
+  .jr-grid{grid-template-columns:1fr;gap:40px}
+  .journal{padding-top:96px}
+  .post__body{padding:28px 22px 40px}
+  .post__title{font-size:24px}
+  .tabs{flex-wrap:wrap;gap:14px 20px}
+  .inquiry{grid-template-columns:1fr;gap:48px;padding:96px 24px}
+  .inquiry__intro{position:static}
+  .inq-form{grid-template-columns:1fr}
+  .consent{padding:18px 16px 20px}
+  .consent__table div{grid-template-columns:1fr;gap:2px}
+  .inq-submit .btn{width:100%}
+  .inq-done{padding:36px 24px}
+}
+</style>
+</head>
+<body>
+
+<div class="announce" data-bind="announcement">₩50,000 이상 구매 시 무료 배송   ·   모든 주문에 시그니처 선물 포장 제공</div>
+
+<header class="header" id="header">
+  <div class="header__in wrap">
+    <nav class="nav" aria-label="주 메뉴">
+      <a href="#best">컬렉션</a>
+      <a href="#programs">클래스</a>
+      <a href="#portfolio">제작 실적</a>
+      <a href="#journal">저널</a>
+      <a href="#craft">브랜드 스토리</a>
+      <a href="#inquiry">기업 상담</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
+    <a href="#" class="logo" aria-label="MAISON ORÉE 홈">
+      <span class="logo__name">MAISON ORÉE</span>
+      <span class="logo__sub">PARFUMS D’INTÉRIEUR · SEOUL</span>
+    </a>
+    <div class="utils">
+      <button class="lang">KR</button>
+      <button class="icon-btn" aria-label="검색"><img src="images/icon-search.svg" width="20" height="20" alt=""></button>
+      <button class="icon-btn hide-m" aria-label="로그인"><img src="images/icon-user.svg" width="20" height="20" alt=""></button>
+      <button class="icon-btn hide-m" aria-label="위시리스트"><img src="images/icon-heart.svg" width="20" height="20" alt=""></button>
+      <button class="icon-btn" aria-label="장바구니"><img src="images/icon-bag.svg" width="20" height="20" alt=""><span class="bag-count" id="bagCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav" aria-label="모바일 메뉴">
+  <a href="#best">컬렉션</a><a href="#programs">클래스</a><a href="#portfolio">제작 실적</a><a href="#journal">저널</a><a href="#craft">브랜드 스토리</a><a href="#inquiry">기업 상담</a>
+</nav>
+
+<div class="load-error" id="loadError" hidden></div>
+
+<main class="wrap">
+
+  <!-- Hero (site.json > hero) -->
+  <section class="hero" aria-label="메인 비주얼">
+    <img class="hero__bg" src="images/hero.webp" fetchpriority="high" data-bind-src="hero.image" data-bind-alt="hero.imageAlt" alt="저녁 햇살이 드는 트래버틴 테이블 위 앰버 캔들과 리드 디퓨저">
+    <div class="hero__content">
+      <p class="hero__eyebrow" data-bind="hero.eyebrow">AUTUMN — WINTER 2026 COLLECTION</p>
+      <h1 class="hero__title" data-bind="hero.title">머무는 자리마다,<br>고요한 온기를</h1>
+      <p class="hero__desc" data-bind="hero.description">천연 소이 왁스와 조향사가 블렌딩한 프렌치 오일로<br>하루의 끝을 천천히 밝히는 새 시즌의 향을 만나보세요.</p>
+      <div class="hero__actions">
+        <a href="#best" class="btn btn--light" data-bind="hero.primaryLabel" data-bind-href="hero.primaryLink">컬렉션 보기</a>
+        <a href="#programs" class="btn btn--outline-light" data-bind="hero.secondaryLabel" data-bind-href="hero.secondaryLink">클래스 일정 보기</a>
+      </div>
+    </div>
+    <p class="hero__pager">01  ———  03</p>
+    <p class="hero__scroll">SCROLL</p>
+  </section>
+
+  <!-- Philosophy (site.json > philosophy) -->
+  <section class="philosophy reveal">
+    <p class="eyebrow">OUR PHILOSOPHY</p>
+    <p class="philosophy__text" data-bind="philosophy.text">향은 기억이 머무는 가장 조용한 방식입니다.<br>우리는 매일의 공간이 조금 더 느리고 깊어지도록,<br>작은 불빛과 은은한 잔향을 만듭니다.</p>
+    <a href="#craft" class="link u" data-bind="philosophy.linkLabel">브랜드 스토리 보기</a>
+  </section>
+
+  <!-- Categories (site.json > categories) -->
+  <section class="section" id="category">
+    <div class="section-head reveal">
+      <div class="section-head__l">
+        <p class="eyebrow">SHOP BY CATEGORY</p>
+        <h2 class="h-section">공간을 채우는 세 가지 방식</h2>
+      </div>
+      <a href="#best" class="link">전체 상품 보기  →</a>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+  </section>
+
+  <!-- Best Sellers (products.json) -->
+  <section class="section" id="best">
+    <div class="section-head reveal">
+      <div class="section-head__l">
+        <p class="eyebrow">BEST SELLERS</p>
+        <h2 class="h-section">가장 오래 머무는 향</h2>
+      </div>
+      <div class="tabs" role="tablist" aria-label="상품 종류">
+        <button class="tab is-active" role="tab" aria-selected="true" data-tab="all">전체</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="candle">캔들</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="diffuser">디퓨저</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="spray">룸 스프레이</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="gift">기프트 세트</button>
+      </div>
+    </div>
+    <div class="product-grid" id="productGrid" aria-live="polite"></div>
+  </section>
+
+  <!-- Scent Family -->
+  <section class="scent" id="scent">
+    <div class="scent__l reveal">
+      <p class="eyebrow">SCENT FAMILY</p>
+      <h2 class="h-section">당신의 공간에<br>어울리는 향을 찾아서</h2>
+      <p class="scent__desc">네 가지 향 계열 중 마음이 머무는 곳을 고르세요.<br>몇 가지 질문으로 나에게 맞는 향을 추천해 드립니다.</p>
+      <a href="#" class="btn btn--dark">향 테스트 시작하기</a>
+    </div>
+    <ul class="notes reveal">
+      <li class="note"><span class="note__no">01</span><span class="note__name"><b>Woody</b><small>우디</small></span><span class="note__desc">샌달우드, 시더, 베티버가 남기는 깊고 차분한 잔향</span><span class="note__arrow">→</span></li>
+      <li class="note"><span class="note__no">02</span><span class="note__name"><b>Floral</b><small>플로럴</small></span><span class="note__desc">로즈, 아이리스, 자스민이 피워내는 부드러운 우아함</span><span class="note__arrow">→</span></li>
+      <li class="note"><span class="note__no">03</span><span class="note__name"><b>Citrus</b><small>시트러스</small></span><span class="note__desc">베르가못, 유자, 네롤리의 맑고 산뜻한 아침 공기</span><span class="note__arrow">→</span></li>
+      <li class="note"><span class="note__no">04</span><span class="note__name"><b>Musk</b><small>머스크</small></span><span class="note__desc">화이트 머스크와 앰버가 감싸는 포근한 살결의 향</span><span class="note__arrow">→</span></li>
+    </ul>
+  </section>
+
+  <!-- Craft Story (site.json > craft) -->
+  <section class="craft" id="craft">
+    <img class="craft__img" src="images/atelier.webp" data-bind-src="craft.image" data-bind-alt="craft.imageAlt" alt="아틀리에에서 녹인 소이 왁스를 앰버 글라스 용기에 붓는 모습" loading="lazy">
+    <div class="craft__body reveal">
+      <p class="eyebrow">THE CRAFT</p>
+      <h2 class="craft__title" data-bind="craft.title">서울의 작은 아틀리에에서<br>한 병씩, 손으로</h2>
+      <p class="craft__text" data-bind="craft.text">모든 캔들은 천연 소이 왁스와 면 심지로 한 번에 소량씩 부어 만들고, 충분한 숙성 기간을 거쳐 향이 온전히 자리 잡은 뒤에야 당신에게 보내집니다. 빠르게 만들지 않는 것, 그것이 우리가 향을 대하는 방식입니다.</p>
+      <div class="stats" id="stats"></div>
+      <a href="#programs" class="btn btn--outline">아틀리에 클래스 보기</a>
+    </div>
+  </section>
+
+  <!-- Programs (programs.json) -->
+  <section class="section" id="programs" style="padding-top:150px">
+    <div class="section-head reveal">
+      <div class="section-head__l">
+        <p class="eyebrow">ATELIER CLASS</p>
+        <h2 class="h-section">아틀리에에서 함께 붓는 시간</h2>
+      </div>
+      <p class="sec-note">소수 정원으로 진행합니다. 완성한 캔들은 숙성을 마친 뒤 보내 드립니다.</p>
+    </div>
+    <ol class="prog-list" id="progList"></ol>
+  </section>
+
+  <!-- Portfolio (portfolio.json) -->
+  <section class="section" id="portfolio">
+    <div class="section-head reveal">
+      <div class="section-head__l">
+        <p class="eyebrow">PORTFOLIO</p>
+        <h2 class="h-section">우리가 새긴 문장들</h2>
+      </div>
+      <div class="chips" id="pfChips" role="group" aria-label="실적 분류"></div>
+    </div>
+    <div class="pf-grid" id="pfGrid" aria-live="polite"></div>
+    <div class="center" id="pfMoreWrap" hidden><button class="btn btn--outline" id="pfMore">제작 실적 더 보기</button></div>
+  </section>
+
+  <!-- Gift Edit (site.json > gift) -->
+  <section class="gift" id="gift">
+    <div class="gift__body reveal">
+      <p class="eyebrow on-dark">THE GIFT EDIT</p>
+      <h2 class="gift__title" data-bind="gift.title">마음을 전하는<br>가장 우아한 방법</h2>
+      <p class="gift__desc" data-bind="gift.text">캔들과 디퓨저, 핸드 크림으로 구성된 시즌 기프트 세트.<br>각인 메시지와 시그니처 리본 포장으로 특별함을 더하세요.</p>
+      <div class="gift__actions">
+        <a href="#best" class="btn btn--light" data-bind="gift.buttonLabel" data-bind-href="gift.buttonLink">기프트 세트 보기</a>
+        <a href="#portfolio" class="link">각인 제작 사례  →</a>
+      </div>
+    </div>
+    <img class="gift__img reveal" src="images/gift-set.webp" data-bind-src="gift.image" data-bind-alt="gift.imageAlt" alt="리본과 티슈로 꾸민 캔들·디퓨저 선물 세트" loading="lazy">
+  </section>
+
+  <!-- Journal (journal.json) -->
+  <section class="section journal" id="journal">
+    <div class="section-head reveal">
+      <div class="section-head__l">
+        <p class="eyebrow">JOURNAL</p>
+        <h2 class="h-section">아틀리에의 기록</h2>
+      </div>
+      <p class="sec-note">새 향 소식, 관리법, 클래스 이야기를 전합니다.</p>
+    </div>
+    <div class="jr-grid" id="jrGrid"></div>
+  </section>
+
+  <!-- B2B Inquiry (site.json > inquiry, 수신: apps-script/Code.gs) -->
+  <section class="inquiry" id="inquiry" aria-labelledby="inqTitle">
+    <div class="inquiry__intro reveal">
+      <p class="eyebrow">CORPORATE &amp; BULK ORDER</p>
+      <h2 class="h-section" id="inqTitle">기업·단체 상담</h2>
+      <p class="inquiry__lead">기업 선물, 대량 주문, 문구 각인 제작, 출장 클래스를 상담해 드립니다. 남겨 주신 연락처로 <span data-bind="inquiry.responseTime">영업일 기준 1일 안에</span> 연락드립니다.</p>
+      <ol class="inq-steps" aria-label="진행 순서">
+        <li><b>1</b><span>상담 신청</span></li>
+        <li><b>2</b><span>견적과 각인 시안 안내</span></li>
+        <li><b>3</b><span>제작과 숙성</span></li>
+        <li><b>4</b><span>포장과 배송</span></li>
+      </ol>
+      <div class="inq-direct" id="inqDirect"></div>
+    </div>
+
+    <form class="inq-form" id="inqForm" novalidate>
+      <div class="field">
+        <label for="f-company">기업명<em>필수</em></label>
+        <input id="f-company" name="company" autocomplete="organization" maxlength="100" placeholder="개인이라면 '개인'이라고 적어 주세요" aria-describedby="e-company">
+        <p class="field__err" id="e-company"></p>
+      </div>
+      <div class="field">
+        <label for="f-name">담당자명<em>필수</em></label>
+        <input id="f-name" name="name" autocomplete="name" maxlength="50" aria-describedby="e-name">
+        <p class="field__err" id="e-name"></p>
+      </div>
+      <div class="field">
+        <label for="f-phone">연락처<em>필수</em></label>
+        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="010-1234-5678" aria-describedby="e-phone">
+        <p class="field__err" id="e-phone"></p>
+      </div>
+      <div class="field">
+        <label for="f-email">이메일</label>
+        <input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="120" placeholder="견적서를 받을 주소" aria-describedby="e-email">
+        <p class="field__err" id="e-email"></p>
+      </div>
+      <div class="field">
+        <label for="f-type">문의 유형</label>
+        <select id="f-type" name="type"><option value="">선택해 주세요</option></select>
+      </div>
+      <div class="field">
+        <label for="f-quantity">예상 수량</label>
+        <input id="f-quantity" name="quantity" maxlength="40" placeholder="예: 100개">
+      </div>
+      <div class="field">
+        <label for="f-due">희망 납기일</label>
+        <input id="f-due" name="dueDate" type="date">
+      </div>
+      <div class="field field--full">
+        <label for="f-message">상담 내용<em>필수</em></label>
+        <textarea id="f-message" name="message" maxlength="2000" placeholder="선물 용도, 원하는 향이나 제품, 각인 문구, 예산 등을 적어 주시면 더 정확하게 안내해 드립니다." aria-describedby="e-message c-message"></textarea>
+        <p class="field__count" id="c-message">0 / 2,000자</p>
+        <p class="field__err" id="e-message"></p>
+      </div>
+      <div class="hp" aria-hidden="true"><label>웹사이트<input name="website" tabindex="-1" autocomplete="off"></label></div>
+
+      <fieldset class="consent">
+        <legend>개인정보 수집·이용 동의</legend>
+        <dl class="consent__table">
+          <div><dt>수집·이용 목적</dt><dd data-bind="inquiry.privacyPurpose">상담 문의 확인, 견적 안내와 답변</dd></div>
+          <div><dt>수집 항목</dt><dd data-bind="inquiry.privacyItems">(필수) 기업명, 담당자명, 연락처, 상담 내용 / (선택) 이메일, 예상 수량, 희망 납기일</dd></div>
+          <div><dt>보유·이용 기간</dt><dd data-bind="inquiry.privacyRetention">상담 종료 후 1년 보관 후 파기</dd></div>
+        </dl>
+        <p class="consent__note">동의를 거부할 수 있습니다. 다만 동의하지 않으면 상담 신청을 접수할 수 없습니다.</p>
+        <label class="check"><input type="checkbox" id="f-consent" name="consent" aria-describedby="e-consent"><span>[필수] 위 내용을 확인했으며 개인정보 수집·이용에 동의합니다.</span></label>
+        <p class="field__err" id="e-consent"></p>
+      </fieldset>
+
+      <div class="inq-submit">
+        <button class="btn btn--dark" type="submit" id="inqSubmit">상담 신청하기</button>
+        <p class="inq-status" id="inqStatus" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+
+    <div class="inq-done" id="inqDone" tabindex="-1" hidden>
+      <p class="eyebrow">THANK YOU</p>
+      <h3>상담 신청을 받았습니다</h3>
+      <p id="inqDoneText"></p>
+      <button class="btn btn--outline" type="button" id="inqAgain">새 상담 신청하기</button>
+    </div>
+  </section>
+
+  <!-- Services (site.json > services) -->
+  <section class="services" id="services" aria-label="서비스 안내"></section>
+
+  <!-- Newsletter -->
+  <section class="newsletter reveal" id="contact">
+    <p class="eyebrow">NEWSLETTER</p>
+    <h2>새로운 향의 소식을 가장 먼저</h2>
+    <p>신제품 출시와 아틀리에 클래스, 구독자 전용 혜택을 보내드립니다.</p>
+    <form class="nl-form" id="nlForm" novalidate>
+      <label for="nlEmail" hidden>이메일</label>
+      <input id="nlEmail" type="email" placeholder="이메일 주소를 입력해 주세요" autocomplete="email">
+      <button type="submit">구독하기  →</button>
+    </form>
+    <p class="nl-msg" id="nlMsg" role="status"></p>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap" style="width:100%;display:flex;flex-direction:column;gap:80px">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <p class="footer__logo">MAISON ORÉE</p>
+        <p class="footer__tag">공간에 머무는 향을 만드는<br>서울의 프래그런스 아틀리에</p>
+        <div class="footer__contact" id="footerContact"></div>
+      </div>
+      <div class="footer__cols">
+        <ul class="footer__col"><h4>SHOP</h4><li><a href="#best">캔들</a></li><li><a href="#best">디퓨저</a></li><li><a href="#best">룸 스프레이</a></li><li><a href="#gift">기프트 세트</a></li></ul>
+        <ul class="footer__col"><h4>ATELIER</h4><li><a href="#craft">브랜드 스토리</a></li><li><a href="#programs">클래스</a></li><li><a href="#portfolio">제작 실적</a></li><li><a href="#journal">저널</a></li></ul>
+        <ul class="footer__col"><h4>SUPPORT</h4><li><a href="#inquiry">기업·단체 상담</a></li><li><a href="#">배송 안내</a></li><li><a href="#">교환 · 반품</a></li><li><a href="#">자주 묻는 질문</a></li></ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy"><span id="copyLine">© 2026 MAISON ORÉE. All rights reserved.   |   </span><span data-bind="contact.businessInfo">사업자 정보 영역</span><br><span data-bind="contact.imageNote">이미지는 제품과 공간을 연출한 시안입니다.</span></p>
+      <div class="footer__sns" id="footerSns"></div>
+    </div>
+  </div>
+</footer>
+
+<dialog class="post" id="post" aria-labelledby="postTitle">
+  <button class="post__close" id="postClose" aria-label="글 닫기">×</button>
+  <img class="post__cover" id="postCover" alt="">
+  <div class="post__body">
+    <p class="post__meta" id="postMeta"></p>
+    <h2 class="post__title" id="postTitle"></h2>
+    <div class="post__content" id="postContent"></div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/purify.min.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

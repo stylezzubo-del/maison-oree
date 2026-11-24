@@ -14,6 +14,8 @@
 const NOTIFY_EMAIL = 'your-email@example.com'; // 알림 받을 이메일 (여러 명이면 쉼표로: 'a@x.com,b@y.com')
 const RETENTION_DAYS = 365;                     // 보관 기간(일). 동의서에 적은 기간과 같아야 합니다.
 const SHEET_NAME = '상담 문의';
+const SPREADSHEET_ID = '';                      // 스프레드시트 메뉴(확장 프로그램 → Apps Script)에서 열었다면 비워 두세요.
+                                                // script.google.com에서 따로 만들었다면 시트 주소의 /d/ 와 /edit 사이 글자를 넣으세요.
 // ──────────────────────────────────────────────────────
 
 const HEADERS = ['접수 시각', '기업명', '담당자', '연락처', '이메일', '문의 유형', '예상 수량', '희망 납기일', '상담 내용', '개인정보 동의', '접수 페이지', '처리 상태', '메모'];
@@ -103,8 +105,14 @@ function testNotify() {
 }
 
 // ── 내부 도우미 ───────────────────────────────────────
+function ss_() {
+  const ss = SPREADSHEET_ID ? SpreadsheetApp.openById(SPREADSHEET_ID) : SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) throw new Error('연결된 스프레드시트가 없습니다. 시트에서 확장 프로그램 → Apps Script로 열거나, SPREADSHEET_ID에 시트 ID를 넣어 주세요.');
+  return ss;
+}
+
 function getSheet_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = ss_();
   let sheet = ss.getSheetByName(SHEET_NAME);
   if (!sheet) {
     sheet = ss.insertSheet(SHEET_NAME);
@@ -123,7 +131,7 @@ function notify_(row, replyTo) {
   const options = {
     to: NOTIFY_EMAIL,
     subject: '[MAISON ORÉE] 새 상담 문의: ' + String(row[1]).replace(/^'/, '') + ' / ' + String(row[2]).replace(/^'/, ''),
-    body: lines.join('\n') + '\n\n전체 목록: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl()
+    body: lines.join('\n') + '\n\n전체 목록: ' + ss_().getUrl()
   };
   if (replyTo) options.replyTo = replyTo;
   MailApp.sendEmail(options);

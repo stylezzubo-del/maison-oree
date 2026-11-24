@@ -97,7 +97,7 @@
     "imageNote": "이미지는 제품과 공간을 연출한 시안입니다."
   },
   "inquiry": {
-    "endpoint": "",
+    "endpoint": "https://script.google.com/macros/s/AKfycbzKBInA-bgcXeufduFNlvSuj3Yy18fHEJYXN0ydbR-bGkwrFipKrVNHjFyE90pDONum/exec",
     "responseTime": "영업일 기준 1일 안에",
     "types": [
       "기업 선물",
